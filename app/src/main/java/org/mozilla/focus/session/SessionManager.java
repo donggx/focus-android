@@ -84,7 +84,7 @@ public class SessionManager {
                         ? UrlUtils.createSearchUrl(context, dataString)
                         : dataString;
 
-                createSession(Source.SHARE, url, isSearch);
+                createSearchSession(Source.SHARE, url, dataString);
             }
         }
     }
@@ -160,15 +160,8 @@ public class SessionManager {
         addSession(session);
     }
 
-    private void createSession(@NonNull Source source, @NonNull String url, boolean isSearch) {
+    public void createSearchSession(@NonNull Source source, @NonNull String url, String searchTerms) {
         final Session session = new Session(source, url);
-        session.setSearch(isSearch);
-        addSession(session);
-    }
-
-    public void createSession(@NonNull Source source, @NonNull String url, boolean isSearch, String searchTerms) {
-        final Session session = new Session(source, url);
-        session.setSearch(isSearch);
         session.setSearchTerms(searchTerms);
         addSession(session);
     }
